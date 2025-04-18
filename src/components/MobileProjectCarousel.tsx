@@ -50,6 +50,17 @@ const Dot = styled.div<{ active: boolean }>`
   transition: background-color 0.3s ease;
 `;
 
+const Slide = styled.div<{ $active: boolean }>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: ${props => props.$active ? 1 : 0};
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: ${props => props.$active ? 'auto' : 'none'};
+`;
+
 interface MobileProjectCarouselProps {
   projects: Array<{
     title: string;

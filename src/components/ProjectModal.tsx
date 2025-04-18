@@ -20,7 +20,7 @@ const Content = styled.div`
   position: relative;
   width: 95vw;
   height: 90vh;
-  background: white;
+  background: #fffbf3;
   border-radius: 12px;
   padding: 1.5rem;
   padding-right: 0.4rem;
@@ -62,7 +62,7 @@ const LoadingContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
+  background: #fffbf3;
   border-radius: 12px;
   z-index: 1;
 `;
@@ -79,7 +79,7 @@ const ProjectFrame = styled.iframe`
   height: 100%;
   border: none;
   border-radius: 8px;
-  background-color: white;
+  background-color: #fffbf3;
   opacity: 0;
   position: relative;
   z-index: 0;
@@ -212,7 +212,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, projectLin
         <LoadingContainer style={{ display: isLoading ? 'flex' : 'none' }}>
           <LoadingIcon 
             ref={iconRef} 
-            src="/images/pradyumnicon.png" 
+            src={`${process.env.PUBLIC_URL}/images/pradyumnicon.png`}
             alt="Loading..."
           />
         </LoadingContainer>

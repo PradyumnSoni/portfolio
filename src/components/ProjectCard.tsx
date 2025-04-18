@@ -13,7 +13,7 @@ interface ProjectCardProps {
   onMouseLeave: () => void;
 }
 
-const Card = styled.div<{ image?: string }>`
+const Card = styled.div<{ $image?: string }>`
   position: relative;
   border-radius: 14px;
   padding: 1.25rem;
@@ -37,7 +37,7 @@ const Card = styled.div<{ image?: string }>`
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: ${props => props.image ? `url(${props.image})` : 'none'};
+    background-image: ${props => props.$image ? `url(${props.$image})` : 'none'};
     background-size: cover;
     background-position: center;
     opacity: 1;
@@ -198,7 +198,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <Card 
       ref={cardRef}
-      image={image} 
+      $image={image} 
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}

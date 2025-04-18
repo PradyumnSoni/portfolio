@@ -109,6 +109,16 @@ const LinkHighlight = styled.a`
   }
 `;
 
+const Description = styled.p<{ $isExpanded: boolean }>`
+  color: #888888;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin: 0;
+  max-height: ${props => props.$isExpanded ? '1000px' : '3.2em'};
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+`;
+
 const IntroSection: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -163,6 +173,9 @@ const IntroSection: React.FC = () => {
         <CurrentWork>
           Currently designing networked ecosystems for last-mile mobility at <LinkHighlight href="https://in.linkedin.com/company/dispatch-network" target="_blank" rel="noopener noreferrer">@Dispatch Network↗</LinkHighlight>
         </CurrentWork>
+        <Description $isExpanded={isExpanded}>
+          I've designed scaleable apps, dashboards, and websites from scratch, conducted intensive user research and testing, and helped shape human-machine interactions for electric vehicles with smartphones. I turn ideas into functional prototypes using AI and code — no-code, low-code, and sometimes... full-code.
+        </Description>
       </Content>
     </Section>
   );

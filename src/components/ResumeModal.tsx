@@ -19,7 +19,7 @@ const Content = styled.div`
   position: relative;
   width: 95vw;
   height: 90vh;
-  background: white;
+  background: #fffbf3;
   border-radius: 12px;
   padding: 1.5rem;
 `;
@@ -98,7 +98,7 @@ const ResumeFrame = styled.iframe`
   height: 100%;
   border: none;
   border-radius: 8px;
-  background-color: #e9e9e9;
+  background-color: #fffbf3;
 `;
 
 interface ResumeModalProps {
@@ -116,14 +116,14 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
         <Split>
           <Left>
             <ResumeFrame
-              src="/images/Pradyumn-CV-March-2025.pdf"
+              src={`${process.env.PUBLIC_URL}/images/Pradyumn-CV-March-2025.pdf`}
               title="Resume"
             />
           </Left>
           <Right>
             <Actions>
               <ActionButton 
-                href="/images/Pradyumn-CV-March-2025.pdf" 
+                href={`${process.env.PUBLIC_URL}/images/Pradyumn-CV-March-2025.pdf`}
                 download
                 isDownload
               >

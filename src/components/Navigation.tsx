@@ -41,7 +41,7 @@ const Logo = styled.span`
   letter-spacing: -0.01em;
 `;
 
-const NavLinks = styled.div<{ isOpen: boolean }>`
+const NavLinks = styled.div<{ $isOpen: boolean }>`
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -57,10 +57,10 @@ const NavLinks = styled.div<{ isOpen: boolean }>`
     right: 0;
     padding: 2rem 1rem;
     gap: 1.5rem;
-    transform: ${props => props.isOpen ? 'translateY(0)' : 'translateY(-100%)'};
-    opacity: ${props => props.isOpen ? 1 : 0};
+    transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-100%)'};
+    opacity: ${props => props.$isOpen ? 1 : 0};
     transition: all 0.3s ease-in-out;
-    pointer-events: ${props => props.isOpen ? 'all' : 'none'};
+    pointer-events: ${props => props.$isOpen ? 'all' : 'none'};
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
   }
 `;
@@ -196,6 +196,7 @@ const MenuButton = styled.button`
 
 const Navigation: React.FC = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
+  const [isLinkedInOpen, setIsLinkedInOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const iconRef = useRef<HTMLImageElement>(null);
@@ -295,10 +296,15 @@ const Navigation: React.FC = () => {
   const handleResumeClick = () => {
     if (window.innerWidth <= 768) {
       // Open resume in new tab for mobile
-      window.open('/images/Pradyumn-CV-March-2025.pdf', '_blank');
+      window.open(`${process.env.PUBLIC_URL}/images/Pradyumn-CV-March-2025.pdf`, '_blank');
     } else {
       setIsResumeOpen(true);
     }
+    setIsMenuOpen(false);
+  };
+
+  const handleLinkedInClick = () => {
+    window.open('https://www.linkedin.com/in/pradyumnsoni/', '_blank');
     setIsMenuOpen(false);
   };
 
@@ -339,7 +345,7 @@ const Navigation: React.FC = () => {
           >
             <ProfileIcon 
               ref={iconRef} 
-              src="/images/pradyumnicon.png" 
+              src={`${process.env.PUBLIC_URL}/images/pradyumnicon.png`}
               alt="Pradyumn's profile icon"
             />
             <Logo>Prady's Portfolio</Logo>
@@ -355,7 +361,7 @@ const Navigation: React.FC = () => {
         <MenuButton onClick={toggleMenu}>
           {isMenuOpen ? <RiCloseLine /> : <RiMenu3Line />}
         </MenuButton>
-        <NavLinks isOpen={isMenuOpen}>
+        <NavLinks $isOpen={isMenuOpen}>
           <MobileNav>
             <NavLink to="/work" onClick={() => setIsMenuOpen(false)}>Work</NavLink>
             <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About</NavLink>
