@@ -39,6 +39,89 @@ const Title = styled.h1`
   }
 `;
 
+const TooltipContainer = styled.span`
+  position: relative;
+  display: inline-block;
+  color: #ff3000;
+  line-height: 1.4;
+  cursor: default;
+  border-bottom: 1px dashed currentColor;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+`;
+
+const Tooltip = styled.div`
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fffbf3;
+  color: #ff3000;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  width: 350px;
+  white-space: normal;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  z-index: 10;
+  box-shadow: 0 6px 50px rgb(218, 205, 202);
+
+  ${TooltipContainer}:hover & {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (max-width: 768px) {
+    position: fixed;
+    bottom: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 300px;
+    white-space: normal;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1rem;
+    box-shadow: 0 6px 50px rgb(218, 205, 202);
+    margin: 0;
+    pointer-events: none;
+
+    ${TooltipContainer}:active & {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fffbf3 transparent transparent transparent;
+  }
+`;
+
 const IntroText = styled.p`
   font-size: 1.1rem;
   line-height: 1.5;
@@ -99,7 +182,7 @@ const ReadMoreButton = styled.button`
 `;
 
 const LinkHighlight = styled.a`
-  color: inherit;
+  color:rgb(70, 70, 70);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   transition: opacity 0.2s ease;
@@ -162,20 +245,17 @@ const IntroSection: React.FC = () => {
       <Content ref={contentRef}>
         <Title>Hey! <br />I'm Pradyumn</Title>
         <IntroText>
-          An interaction designer blending design thinking with AI-powered prototyping and vibe-driven code.
+          An <TooltipContainer>interaction designer<Tooltip>Interaction designer, Product designer, UI/UX designer... we have many names! 😵‍💫</Tooltip></TooltipContainer> blending design thinking with AI-powered prototyping for everything digital.
         </IntroText>
         <ExperienceText isExpanded={isExpanded}>
-          I've designed scaleable apps, dashboards, and websites from scratch, conducted intensive user research and testing, and helped shape human-machine interactions for electric vehicles with smartphones. I turn ideas into functional prototypes using AI and code — no-code, low-code, and sometimes... full-code.
+          I've designed scaleable apps, dashboards, and websites from scratch, conducted intensive user research and testing, and helped shape human-machine interactions for electric vehicles with smartphones. I turn ideas into functional prototypes using AI and code — no-code, low-code, and sometimes... <TooltipContainer>full-code<Tooltip>Vibe coded this website in 17 minutes 🚀 + lot of custom touches and easter eggs 😋</Tooltip></TooltipContainer>.
         </ExperienceText>
         <ReadMoreButton onClick={toggleExpand}>
           {isExpanded ? 'Read Less' : 'Read More'}
         </ReadMoreButton>
         <CurrentWork>
-          Currently designing networked ecosystems for last-mile mobility at <LinkHighlight href="https://in.linkedin.com/company/dispatch-network" target="_blank" rel="noopener noreferrer">@Dispatch Network↗</LinkHighlight>
+          Currently designing networked ecosystems for last-mile mobility <LinkHighlight href="https://in.linkedin.com/company/dispatch-network" target="_blank" rel="noopener noreferrer">@Dispatch Network↗</LinkHighlight>
         </CurrentWork>
-        <Description $isExpanded={isExpanded}>
-          I've designed scaleable apps, dashboards, and websites from scratch, conducted intensive user research and testing, and helped shape human-machine interactions for electric vehicles with smartphones. I turn ideas into functional prototypes using AI and code — no-code, low-code, and sometimes... full-code.
-        </Description>
       </Content>
     </Section>
   );
