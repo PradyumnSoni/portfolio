@@ -1,40 +1,67 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import ProjectCard from './ProjectCard';
-import ProjectModal from './ProjectModal';
+import MobileProjectCarousel from './MobileProjectCarousel';
+import gsap from 'gsap';
 
 const Section = styled.section`
   flex: 1;
   max-width: 720px;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: 768px) {
     max-width: 100%;
+    margin-top: -0.5rem;
   }
 `;
 
 const SectionTitle = styled.h2`
   font-size: 1.1rem;
-  margin-bottom: 1 rem;
+  margin-bottom: 1rem;
   font-weight: 400;
   color:rgb(128, 128, 128);
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+    color: #ff3000;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ProjectListContainer = styled.div`
   width: 100%;
   max-width: 480px;
+  position: relative;
+  z-index: 2;
 
   @media (max-width: 768px) {
     max-width: 100%;
   }
 `;
 
-const ProjectList = styled.div`
+const DesktopProjectList = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.5rem;
+  position: relative;
+  z-index: 2;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const MobileView = styled.div`
+  display: none;
+  
+  @media (max-width: 768px) {
+    display: block;
+  }
 `;
 
 const projects = [
@@ -82,26 +109,66 @@ const projects = [
   }
 ];
 
-const ProjectsSection: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+interface ProjectsSectionProps {
+  onProjectSelect: (link: string) => void;
+}
+
+const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onProjectSelect }) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (sectionRef.current && titleRef.current && listRef.current) {
+        const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+        
+        tl.fromTo(sectionRef.current, 
+          { opacity: 0, x: 50 },
+          { 
+            opacity: 1,
+            x: 0,
+            duration: 1
+          }
+        )
+        .fromTo(titleRef.current, 
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8
+          },
+          "-=0.5"
+        )
+        .fromTo(listRef.current.children, 
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.1,
+            duration: 0.8
+          },
+          "-=0.4"
+        );
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleProjectClick = (link: string, title: string) => {
-    if (title === 'Urban Piper') {
+    if (window.innerWidth <= 768 || title === 'Urban Piper') {
       window.open(link, '_blank', 'noopener,noreferrer');
     } else {
-      setSelectedProject(link);
+      onProjectSelect(link);
     }
   };
 
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
-
   return (
-    <Section>
-      <SectionTitle>My Work</SectionTitle>
+    <Section ref={sectionRef} style={{ opacity: 0 }}>
+      <SectionTitle ref={titleRef}>My Work</SectionTitle>
       <ProjectListContainer>
-        <ProjectList>
+        <DesktopProjectList ref={listRef}>
           {projects.map((project, index) => (
             <ProjectCard
               key={index}
@@ -111,15 +178,18 @@ const ProjectsSection: React.FC = () => {
               image={project.image}
               link={project.link}
               onClick={() => handleProjectClick(project.link, project.title)}
+              onMouseEnter={() => {}}
+              onMouseLeave={() => {}}
             />
           ))}
-        </ProjectList>
+        </DesktopProjectList>
+        <MobileView>
+          <MobileProjectCarousel 
+            projects={projects}
+            onProjectSelect={handleProjectClick}
+          />
+        </MobileView>
       </ProjectListContainer>
-      <ProjectModal
-        isOpen={selectedProject !== null}
-        onClose={handleCloseModal}
-        projectLink={selectedProject || ''}
-      />
     </Section>
   );
 };

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Navigation from './components/Navigation';
 import IntroSection from './components/IntroSection';
 import ProjectsSection from './components/ProjectsSection';
+import ProjectModal from './components/ProjectModal';
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -56,11 +57,21 @@ const MainContent = styled.main`
   @media (max-width: 768px) {
     flex-direction: column;
     padding: 1rem;
-    gap: 1rem;
+    gap: 0.5rem;
   }
 `;
 
 const App: React.FC = () => {
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+
+  const handleProjectSelect = (link: string) => {
+    setSelectedProject(link);
+  };
+
+  const handleCloseModal = () => {
+    setSelectedProject(null);
+  };
+
   return (
     <>
       <GlobalStyle />
@@ -68,9 +79,14 @@ const App: React.FC = () => {
         <Navigation />
         <MainContent>
           <IntroSection />
-          <ProjectsSection />
+          <ProjectsSection onProjectSelect={handleProjectSelect} />
         </MainContent>
       </AppContainer>
+      <ProjectModal
+        isOpen={selectedProject !== null}
+        onClose={handleCloseModal}
+        projectLink={selectedProject || ''}
+      />
     </>
   );
 };
