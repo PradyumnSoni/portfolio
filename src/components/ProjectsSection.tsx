@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import ProjectCard from './ProjectCard';
 import MobileProjectCarousel from './MobileProjectCarousel';
@@ -69,42 +69,42 @@ const projects = [
     title: 'Food For Thought',
     year: '2021',
     description: 'Interactive Dining Experience using AR',
-    image: '/images/projects/Project-FoodForThought.jpg',
+    image: `${process.env.PUBLIC_URL}/images/projects/Project-FoodForThought.jpg`,
     link: 'https://pradyumn-projects.framer.website/foodforthought'
   },
   {
     title: 'DigiYatra',
     year: '2023',
     description: 'Redesigned for frequent-flyers\'s travel experience',
-    image: '/images/projects/Project-Digiyatra.jpg',
+    image: `${process.env.PUBLIC_URL}/images/projects/Project-Digiyatra.jpg`,
     link: 'https://pradyumn-projects.framer.website/digiyatra'
   },
   {
     title: 'Urban Piper',
     year: '2024',
     description: 'India\'s Biggest Restaurant Management System',
-    image: '/images/projects/Project-UrbanPiper.jpg',
+    image: `${process.env.PUBLIC_URL}/images/projects/Project-UrbanPiper.jpg`,
     link: 'https://www.figma.com/design/zCdwM635w0k8uOQxZ00i8e/UrbanPiper---Pradyumn?node-id=201-780&t=WRywervlVUDJzQuG-1'
   },
   {
     title: 'SoulInk',
     year: '2022',
     description: 'An AI-powered kindle-like pad for new writers to explore new forms of writing',
-    image: '/images/projects/Project-Soulink.jpg',
+    image: `${process.env.PUBLIC_URL}/images/projects/Project-Soulink.jpg`,
     link: 'https://pradyumn-projects.framer.website/soulink'
   },
   {
     title: 'Roots Minigardens',
     year: '2022',
     description: 'Logo Design for a terrarium brand',
-    image: '/images/projects/Project-Roots.jpg',
+    image: `${process.env.PUBLIC_URL}/images/projects/Project-Roots.jpg`,
     link: 'https://pradyumn-projects.framer.website/rootsminigardens'
   },
   {
     title: 'Louis Vuitton x Friday',
     year: '2023',
     description: 'Retelling Legacy by reviving the Heeled Boots for men',
-    image: '/images/projects/Project-LouisVuitton.jpg',
+    image: `${process.env.PUBLIC_URL}/images/projects/Project-LouisVuitton.jpg`,
     link: 'https://pradyumn-projects.framer.website/LVxFriday'
   }
 ];
