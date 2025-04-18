@@ -295,7 +295,7 @@ const Navigation: React.FC = () => {
   const handleResumeClick = () => {
     if (window.innerWidth <= 768) {
       // Open resume in new tab for mobile
-      window.open('https://drive.google.com/file/d/1vgN_BxSvS5vv9QBzaa-M16P39bk3JNxP/view?usp=sharing', '_blank');
+      window.open('/images/Pradyumn-CV-March-2025.pdf', '_blank');
     } else {
       setIsResumeOpen(true);
     }
@@ -345,9 +345,9 @@ const Navigation: React.FC = () => {
             <Logo>Prady's Portfolio</Logo>
           </div>
           <MainNav>
-            <NavLink to="/work">Work</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavButton onClick={handleResumeClick}>
+            {/* <NavLink to="/work">Work</NavLink>
+            <NavLink to="/about">About</NavLink> */}
+          <NavButton onClick={handleResumeClick}>
               Resume
             </NavButton>
           </MainNav>
@@ -364,17 +364,17 @@ const Navigation: React.FC = () => {
             </NavButton>
           </MobileNav>
           <NavRight>
-            <IconLink href="mailto:pradyumn.ag@gmail.com" target="_blank" rel="noopener noreferrer">
+            <IconLink href="mailto:pradyumnsoni@gmail.com" target="_blank" rel="noopener noreferrer">
               <HiOutlineMail />
             </IconLink>
-            <IconLink href="https://www.linkedin.com/in/pradyumnag/" target="_blank" rel="noopener noreferrer">
+            <IconLink href="https://www.linkedin.com/in/pradyumnsoni/" target="_blank" rel="noopener noreferrer">
               <FaLinkedin />
             </IconLink>
             <SocialLinks>
-              <MobileIconLink href="mailto:pradyumn.ag@gmail.com" target="_blank" rel="noopener noreferrer">
+              <MobileIconLink href="mailto:pradyumnsoni@gmail.com" target="_blank" rel="noopener noreferrer">
                 <HiOutlineMail />
               </MobileIconLink>
-              <MobileIconLink href="https://www.linkedin.com/in/pradyumnag/" target="_blank" rel="noopener noreferrer">
+              <MobileIconLink href="https://www.linkedin.com/in/pradyumnsoni/" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin />
               </MobileIconLink>
             </SocialLinks>

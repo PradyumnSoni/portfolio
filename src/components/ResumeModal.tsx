@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FaDownload, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 
 const Overlay = styled.div`
   position: fixed;
@@ -73,13 +74,14 @@ const Actions = styled.div`
   gap: 1rem;
 `;
 
-const ActionButton = styled.a`
+const ActionButton = styled.a<{ isDownload?: boolean }>`
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   padding: 1rem 1.5rem;
-  background-color: #e9e9e9;
-  color: #000000;
+  background-color: ${props => props.isDownload ? '#ff3000' : '#e9e9e9'};
+  color: ${props => props.isDownload ? '#ffffff' : '#000000'};
   text-decoration: none;
   border-radius: 8px;
   font-weight: 500;
@@ -87,7 +89,7 @@ const ActionButton = styled.a`
 
   &:hover {
     transform: translateY(-2px);
-    background-color: #ddd;
+    background-color: ${props => props.isDownload ? '#e62e00' : '#ddd'};
   }
 `;
 
@@ -123,20 +125,21 @@ const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose }) => {
               <ActionButton 
                 href="/images/Pradyumn-CV-March-2025.pdf" 
                 download
+                isDownload
               >
-                Download PDF
+                <FaDownload /> Download PDF
               </ActionButton>
               <ActionButton 
                 href="mailto:pradyumnsoni@gmail.com"
               >
-                Email Pradyumn
+                <FaEnvelope /> Email Pradyumn
               </ActionButton>
               <ActionButton 
                 href="https://linkedin.com/in/pradyumnsoni"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                My LinkedIn
+                <FaLinkedin /> Pradyumn's LinkedIn
               </ActionButton>
             </Actions>
           </Right>

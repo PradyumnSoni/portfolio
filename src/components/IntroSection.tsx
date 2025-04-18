@@ -161,7 +161,7 @@ const IntroSection: React.FC = () => {
           {isExpanded ? 'Read Less' : 'Read More'}
         </ReadMoreButton>
         <CurrentWork>
-          Currently designing networked ecosystems for last-mile mobility at <LinkHighlight href="https://in.linkedin.com/company/dispatch-network" target="_blank" rel="noopener noreferrer">@Dispatch Network↗</LinkHighlight>.
+          Currently designing networked ecosystems for last-mile mobility at <LinkHighlight href="https://in.linkedin.com/company/dispatch-network" target="_blank" rel="noopener noreferrer">@Dispatch Network↗</LinkHighlight>
         </CurrentWork>
       </Content>
     </Section>

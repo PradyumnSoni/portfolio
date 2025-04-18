@@ -19,8 +19,8 @@ const Section = styled.section`
 const SectionTitle = styled.h2`
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  font-weight: 400;
-  color:rgb(128, 128, 128);
+  font-weight: 500;
+  color: #888888;
   display: flex;
   align-items: center;
   gap: 0.5rem;
