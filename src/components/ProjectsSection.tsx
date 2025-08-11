@@ -166,7 +166,7 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onProjectSelect }) =>
 
   return (
     <Section ref={sectionRef} style={{ opacity: 0 }}>
-      <SectionTitle ref={titleRef}>My Work</SectionTitle>
+      <SectionTitle ref={titleRef}>Projects</SectionTitle>
       <ProjectListContainer>
         <DesktopProjectList ref={listRef}>
           {projects.map((project, index) => (

@@ -245,10 +245,10 @@ const IntroSection: React.FC = () => {
       <Content ref={contentRef}>
         <Title>Hey! <br />I'm Pradyumn</Title>
         <IntroText>
-          An <TooltipContainer>interaction designer<Tooltip>Interaction designer, Product designer, UI/UX designer... we have many names! 😵‍💫</Tooltip></TooltipContainer> blending design thinking with AI-powered prototyping for everything digital.
+          A <TooltipContainer>product designer<Tooltip>Product designer, Interaction designer, UI/UX designer... we have many names! 😵‍💫</Tooltip></TooltipContainer> blending design thinking with AI-powered prototyping for everything digital.
         </IntroText>
         <ExperienceText isExpanded={isExpanded}>
-          I've designed scaleable apps, dashboards, and websites from scratch, conducted intensive user research and testing, and helped shape human-machine interactions for electric vehicles with smartphones. I turn ideas into functional prototypes using AI and code — no-code, low-code, and sometimes... <TooltipContainer>full-code<Tooltip>Vibe coded this website in 17 minutes 🚀 + lot of custom touches and easter eggs 😋</Tooltip></TooltipContainer>.
+        I’ve designed and shipped scalable mobile and desktop apps from the ground up, built design systems that power high-growth products, and worked hands-on across the full lifecycle - from research and concepting to QA and production. Comfortable blending design thinking with AI-augmented workflows, I turn ideas into polished, <TooltipContainer>functional<Tooltip>Fully custom coded this website using Cursor IDE. Deployed on Github pages</Tooltip></TooltipContainer> products.
         </ExperienceText>
         <ReadMoreButton onClick={toggleExpand}>
           {isExpanded ? 'Read Less' : 'Read More'}

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import { HiOutlineMail } from 'react-icons/hi';
 import { FaLinkedin } from 'react-icons/fa';
 import { RiMenu3Line, RiCloseLine } from 'react-icons/ri';
-import ResumeModal from './ResumeModal';
 import confetti from 'canvas-confetti';
 import gsap from 'gsap';
 
@@ -195,8 +194,6 @@ const MenuButton = styled.button`
 `;
 
 const Navigation: React.FC = () => {
-  const [isResumeOpen, setIsResumeOpen] = useState(false);
-  const [isLinkedInOpen, setIsLinkedInOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const iconRef = useRef<HTMLImageElement>(null);
@@ -293,16 +290,6 @@ const Navigation: React.FC = () => {
     }());
   };
 
-  const handleResumeClick = () => {
-    if (window.innerWidth <= 768) {
-      // Open resume in new tab for mobile
-      window.open(`${process.env.PUBLIC_URL}/images/Pradyumn-CV-March-2025.pdf`, '_blank');
-    } else {
-      setIsResumeOpen(true);
-    }
-    setIsMenuOpen(false);
-  };
-
   const handleLinkedInClick = () => {
     window.open('https://www.linkedin.com/in/pradyumnsoni/', '_blank');
     setIsMenuOpen(false);
@@ -353,9 +340,6 @@ const Navigation: React.FC = () => {
           <MainNav>
             {/* <NavLink to="/work">Work</NavLink>
             <NavLink to="/about">About</NavLink> */}
-          <NavButton onClick={handleResumeClick}>
-              Resume
-            </NavButton>
           </MainNav>
         </NavLeft>
         <MenuButton onClick={toggleMenu}>
@@ -365,9 +349,6 @@ const Navigation: React.FC = () => {
           <MobileNav>
             <NavLink to="/work" onClick={() => setIsMenuOpen(false)}>Work</NavLink>
             <NavLink to="/about" onClick={() => setIsMenuOpen(false)}>About</NavLink>
-            <NavButton onClick={handleResumeClick}>
-              Resume
-            </NavButton>
           </MobileNav>
           <NavRight>
             <IconLink href="mailto:pradyumnsoni@gmail.com" target="_blank" rel="noopener noreferrer">
@@ -387,7 +368,6 @@ const Navigation: React.FC = () => {
           </NavRight>
         </NavLinks>
       </Nav>
-      {!(window.innerWidth <= 768) && <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />}
     </>
   );
 };
