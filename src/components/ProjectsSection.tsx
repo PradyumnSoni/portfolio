@@ -66,51 +66,52 @@ const MobileView = styled.div`
 
 const projects = [
   {
+    title: 'Dispatch Delivery Partner App',
+    description: 'Mobile app for AI powered hyperlocal delivery',
+    image: `${process.env.PUBLIC_URL}/images/projects/Project-Dispatch.jpg`,
+    link: '',
+    type: 'Pre-Launch',
+    id: 'dispatch'
+  },
+  {
     title: 'Food For Thought',
-    year: '2021',
     description: 'Interactive Dining Experience using AR',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-FoodForThought.jpg`,
-    link: 'https://pradyumn-projects.framer.website/foodforthought'
+    link: 'https://pradyumn-projects.framer.website/foodforthought',
+    type: 'Physical UX'
   },
   {
     title: 'DigiYatra',
-    year: '2023',
     description: 'Redesigned for frequent-flyers\'s travel experience',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-Digiyatra.jpg`,
-    link: 'https://pradyumn-projects.framer.website/digiyatra'
-  },
-  {
-    title: 'Urban Piper',
-    year: '2024',
-    description: 'India\'s Biggest Restaurant Management System',
-    image: `${process.env.PUBLIC_URL}/images/projects/Project-UrbanPiper.jpg`,
-    link: 'https://www.figma.com/design/zCdwM635w0k8uOQxZ00i8e/UrbanPiper---Pradyumn?node-id=201-780&t=WRywervlVUDJzQuG-1'
+    link: 'https://pradyumn-projects.framer.website/digiyatra',
+    type: 'Digital UX'
   },
   {
     title: 'SoulInk',
-    year: '2022',
     description: 'An AI-powered kindle-like pad for new writers to explore new forms of writing',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-Soulink.jpg`,
-    link: 'https://pradyumn-projects.framer.website/soulink'
+    link: 'https://pradyumn-projects.framer.website/soulink',
+    type: 'Phygital UX'
   },
   {
     title: 'Roots Minigardens',
-    year: '2022',
     description: 'Logo Design for a terrarium brand',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-Roots.jpg`,
-    link: 'https://pradyumn-projects.framer.website/rootsminigardens'
+    link: 'https://pradyumn-projects.framer.website/rootsminigardens',
+    type: 'Brand Identity'
   },
   {
     title: 'Louis Vuitton x Friday',
-    year: '2023',
     description: 'Retelling Legacy by reviving the Heeled Boots for men',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-LouisVuitton.jpg`,
-    link: 'https://pradyumn-projects.framer.website/LVxFriday'
+    link: 'https://pradyumn-projects.framer.website/LVxFriday',
+    type: 'Industrial Design'
   }
 ];
 
 interface ProjectsSectionProps {
-  onProjectSelect: (link: string) => void;
+  onProjectSelect: (link: string, projectId?: string) => void;
 }
 
 const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onProjectSelect }) => {
@@ -156,11 +157,22 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onProjectSelect }) =>
     return () => clearTimeout(timer);
   }, []);
 
-  const handleProjectClick = (link: string, title: string) => {
-    if (window.innerWidth <= 768 || title === 'Urban Piper') {
+  const handleProjectClick = (link: string, title: string, projectId?: string) => {
+    // Allow opening modal for Dispatch project even without link
+    if (projectId === 'dispatch') {
+      onProjectSelect(link || '', projectId);
+      return;
+    }
+    
+    // Don't do anything if there's no link (coming soon projects)
+    if (!link || link.trim() === '') {
+      return;
+    }
+    
+    if (window.innerWidth <= 768) {
       window.open(link, '_blank', 'noopener,noreferrer');
     } else {
-      onProjectSelect(link);
+      onProjectSelect(link, projectId);
     }
   };
 
@@ -173,11 +185,11 @@ const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onProjectSelect }) =>
             <ProjectCard
               key={index}
               title={project.title}
-              year={project.year}
               description={project.description}
               image={project.image}
               link={project.link}
-              onClick={() => handleProjectClick(project.link, project.title)}
+              type={project.type}
+              onClick={() => handleProjectClick(project.link, project.title, project.id)}
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
             />

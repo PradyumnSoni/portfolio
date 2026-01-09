@@ -87,22 +87,6 @@ const NavLink = styled(Link)`
   }
 `;
 
-const NavButton = styled.button`
-  text-decoration: none;
-  color: #000000;
-  background: none;
-  border: none;
-  padding: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: inherit;
-
-  @media (max-width: 768px) {
-    font-size: 1.1rem;
-    text-align: center;
-  }
-`;
-
 const MainNav = styled.div`
   display: flex;
   align-items: center;
@@ -288,11 +272,6 @@ const Navigation: React.FC = () => {
         }
       }
     }());
-  };
-
-  const handleLinkedInClick = () => {
-    window.open('https://www.linkedin.com/in/pradyumnsoni/', '_blank');
-    setIsMenuOpen(false);
   };
 
   const toggleMenu = () => {

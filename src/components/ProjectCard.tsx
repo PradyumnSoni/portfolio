@@ -4,10 +4,10 @@ import gsap from 'gsap';
 
 interface ProjectCardProps {
   title: string;
-  year: string;
   description: string;
   image?: string;
   link: string;
+  type?: string;
   onClick: () => void;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -98,9 +98,6 @@ const Content = styled.div`
 `;
 
 const Header = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 0.75rem;
 `;
 
@@ -111,23 +108,32 @@ const Title = styled.h3`
   color: #ffffff;
 `;
 
-const Year = styled.span`
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 0.9rem;
-`;
-
 const Description = styled.p`
   color: rgba(255, 255, 255, 0.9);
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.5;
   margin: 0;
 `;
 
+const TypeChip = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000000;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  z-index: 3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+`;
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
   title, 
-  year, 
   description, 
   image, 
+  type,
   onClick,
   onMouseEnter,
   onMouseLeave 
@@ -139,21 +145,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const handleMouseEnter = () => {
     onMouseEnter();
-    if (cardRef.current && contentRef.current && overlayRef.current && imageRef.current) {
+    if (cardRef.current && contentRef.current && overlayRef.current) {
       const tl = gsap.timeline();
       
       tl.to(cardRef.current, {
         height: 400,
         duration: 0.7,
         ease: "power3.out"
-      })
-      .to(imageRef.current, {
-        opacity: 1,
-        scale: 1.05,
-        duration: 0.7,
-        ease: "power3.out"
-      }, 0)
-      .to(overlayRef.current, {
+      });
+      
+      if (imageRef.current) {
+        tl.to(imageRef.current, {
+          opacity: 1,
+          scale: 1.05,
+          duration: 0.7,
+          ease: "power3.out"
+        }, 0);
+      }
+      
+      tl.to(overlayRef.current, {
         background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.15) 100%)",
         duration: 0.7,
         ease: "power3.out"
@@ -168,21 +178,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
   const handleMouseLeave = () => {
     onMouseLeave();
-    if (cardRef.current && contentRef.current && overlayRef.current && imageRef.current) {
+    if (cardRef.current && contentRef.current && overlayRef.current) {
       const tl = gsap.timeline();
       
       tl.to(cardRef.current, {
         height: 100,
         duration: 0.7,
         ease: "power3.out"
-      })
-      .to(imageRef.current, {
-        opacity: 0.95,
-        scale: 1,
-        duration: 0.7,
-        ease: "power3.out"
-      }, 0)
-      .to(overlayRef.current, {
+      });
+      
+      if (imageRef.current) {
+        tl.to(imageRef.current, {
+          opacity: 0.95,
+          scale: 1,
+          duration: 0.7,
+          ease: "power3.out"
+        }, 0);
+      }
+      
+      tl.to(overlayRef.current, {
         background: "linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.25) 100%)",
         duration: 0.7,
         ease: "power3.out"
@@ -203,15 +217,17 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <ImageLayer 
-        ref={imageRef} 
-        style={{ backgroundImage: `url(${image})` }} 
-      />
+      {image && (
+        <ImageLayer 
+          ref={imageRef} 
+          style={{ backgroundImage: `url(${image})` }} 
+        />
+      )}
       <OverlayLayer ref={overlayRef} />
+      {type && <TypeChip>{type}</TypeChip>}
       <Content ref={contentRef}>
         <Header>
           <Title>{title}</Title>
-          <Year>{year}</Year>
         </Header>
         <Description>{description}</Description>
       </Content>

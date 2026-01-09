@@ -192,16 +192,6 @@ const LinkHighlight = styled.a`
   }
 `;
 
-const Description = styled.p<{ $isExpanded: boolean }>`
-  color: #888888;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 0;
-  max-height: ${props => props.$isExpanded ? '1000px' : '3.2em'};
-  overflow: hidden;
-  transition: max-height 0.5s ease-in-out;
-`;
-
 const IntroSection: React.FC = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -245,16 +235,17 @@ const IntroSection: React.FC = () => {
       <Content ref={contentRef}>
         <Title>Hey! <br />I'm Pradyumn</Title>
         <IntroText>
-          A <TooltipContainer>product designer<Tooltip>Product designer, Interaction designer, UI/UX designer... we have many names! 😵‍💫</Tooltip></TooltipContainer> blending design thinking with AI-powered prototyping for everything digital.
+          A <TooltipContainer>product designer<Tooltip>Product designer? Interaction designer? UI/UX designer? Ah! Whatever...</Tooltip></TooltipContainer> working on early-stage, real-world systems.
         </IntroText>
         <ExperienceText isExpanded={isExpanded}>
-        I’ve designed and shipped scalable mobile and desktop apps from the ground up, built design systems that power high-growth products, and worked hands-on across the full lifecycle - from research and concepting to QA and production. Comfortable blending design thinking with AI-augmented workflows, I turn ideas into polished, <TooltipContainer>functional<Tooltip>Fully custom coded this website using Cursor IDE. Deployed on Github pages</Tooltip></TooltipContainer> products.
+        I design products for systems that don’t have the luxury of being confusing.
+        I work end-to-end, from problem framing and flows to detailed interfaces, experiences, and development, with a strong emphasis on systems thinking and execution.
         </ExperienceText>
         <ReadMoreButton onClick={toggleExpand}>
           {isExpanded ? 'Read Less' : 'Read More'}
         </ReadMoreButton>
         <CurrentWork>
-          Currently designing networked ecosystems for last-mile mobility <LinkHighlight href="https://in.linkedin.com/company/dispatch-network" target="_blank" rel="noopener noreferrer">@Dispatch Network↗</LinkHighlight>
+        Currently working on the product foundations for a last-mile mobility platform at <LinkHighlight href="https://in.linkedin.com/company/dispatch-network" target="_blank" rel="noopener noreferrer">@Dispatch Network↗</LinkHighlight>
         </CurrentWork>
       </Content>
     </Section>

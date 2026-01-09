@@ -61,11 +61,16 @@ const MainContent = styled.main`
   }
 `;
 
-const App: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+interface ProjectData {
+  link: string;
+  id?: string;
+}
 
-  const handleProjectSelect = (link: string) => {
-    setSelectedProject(link);
+const App: React.FC = () => {
+  const [selectedProject, setSelectedProject] = useState<ProjectData | null>(null);
+
+  const handleProjectSelect = (link: string, projectId?: string) => {
+    setSelectedProject({ link, id: projectId });
   };
 
   const handleCloseModal = () => {
@@ -85,7 +90,8 @@ const App: React.FC = () => {
       <ProjectModal
         isOpen={selectedProject !== null}
         onClose={handleCloseModal}
-        projectLink={selectedProject || ''}
+        projectLink={selectedProject?.link || ''}
+        projectId={selectedProject?.id}
       />
     </>
   );

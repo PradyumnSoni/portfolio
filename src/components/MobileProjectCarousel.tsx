@@ -50,26 +50,16 @@ const Dot = styled.div<{ active: boolean }>`
   transition: background-color 0.3s ease;
 `;
 
-const Slide = styled.div<{ $active: boolean }>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: ${props => props.$active ? 1 : 0};
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: ${props => props.$active ? 'auto' : 'none'};
-`;
-
 interface MobileProjectCarouselProps {
   projects: Array<{
     title: string;
-    year: string;
     description: string;
-    image: string;
+    image?: string;
     link: string;
+    type: string;
+    id?: string;
   }>;
-  onProjectSelect: (link: string, title: string) => void;
+  onProjectSelect: (link: string, title: string, projectId?: string) => void;
 }
 
 const MobileProjectCarousel: React.FC<MobileProjectCarouselProps> = ({ projects, onProjectSelect }) => {
@@ -105,11 +95,11 @@ const MobileProjectCarousel: React.FC<MobileProjectCarouselProps> = ({ projects,
           <CardWrapper key={index}>
             <ProjectCard
               title={project.title}
-              year={project.year}
               description={project.description}
               image={project.image}
               link={project.link}
-              onClick={() => onProjectSelect(project.link, project.title)}
+              type={project.type}
+              onClick={() => onProjectSelect(project.link, project.title, project.id)}
               onMouseEnter={() => {}}
               onMouseLeave={() => {}}
             />
