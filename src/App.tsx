@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Analytics } from '@vercel/analytics/react';
 import Navigation from './components/Navigation';
 import IntroSection from './components/IntroSection';
 import ProjectsSection from './components/ProjectsSection';
@@ -93,6 +94,7 @@ const App: React.FC = () => {
         projectLink={selectedProject?.link || ''}
         projectId={selectedProject?.id}
       />
+      <Analytics />
     </>
   );
 };
