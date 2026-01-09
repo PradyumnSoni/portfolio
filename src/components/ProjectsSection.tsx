@@ -67,7 +67,7 @@ const MobileView = styled.div`
 const projects = [
   {
     title: 'Dispatch Delivery Partner App',
-    description: 'Mobile app for AI powered hyperlocal delivery',
+    description: 'Mobile app used by delivery riders for hyperlocal deliveries.',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-Dispatch.jpg`,
     link: '',
     type: 'Pre-Launch',
@@ -75,35 +75,35 @@ const projects = [
   },
   {
     title: 'Food For Thought',
-    description: 'Interactive Dining Experience using AR',
+    description: 'Transforming restaurant experiences with immersive AR.',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-FoodForThought.jpg`,
     link: 'https://pradyumn-projects.framer.website/foodforthought',
     type: 'Physical UX'
   },
   {
     title: 'DigiYatra',
-    description: 'Redesigned for frequent-flyers\'s travel experience',
+    description: 'Redesigned to simplify and elevate the digital experience for frequent flyers.',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-Digiyatra.jpg`,
     link: 'https://pradyumn-projects.framer.website/digiyatra',
     type: 'Digital UX'
   },
   {
     title: 'SoulInk',
-    description: 'An AI-powered kindle-like pad for new writers to explore new forms of writing',
+    description: 'An AI-driven creative writing pad that empowers emerging writers to ideate, draft, and experiment with interactive storytelling formats.',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-Soulink.jpg`,
     link: 'https://pradyumn-projects.framer.website/soulink',
     type: 'Phygital UX'
   },
   {
     title: 'Roots Minigardens',
-    description: 'Logo Design for a terrarium brand',
+    description: 'Logo Design for a  brand that offers mini terrariums for urban living.',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-Roots.jpg`,
     link: 'https://pradyumn-projects.framer.website/rootsminigardens',
     type: 'Brand Identity'
   },
   {
     title: 'Louis Vuitton x Friday',
-    description: 'Retelling Legacy by reviving the Heeled Boots for men',
+    description: 'Reviving the iconic Heeled Boots for men, reimagining the brand\'s legacy.',
     image: `${process.env.PUBLIC_URL}/images/projects/Project-LouisVuitton.jpg`,
     link: 'https://pradyumn-projects.framer.website/LVxFriday',
     type: 'Industrial Design'
